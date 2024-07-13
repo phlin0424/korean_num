@@ -1,0 +1,8 @@
+.venv
+.vscode
+src/data
+*__pycache__*
+.ruff_cache
+*localtest*
+tests/*.mp3
+.pytest*

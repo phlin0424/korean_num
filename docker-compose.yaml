@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  api-server:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    volumes:
+      - ./src/data:/app/src/data  # mount the audio output
+    ports:
+      - "80:80"
+    environment:
+      - HOST=api-server
+
+  streamlit:
+    build: 
+      context: .
+      dockerfile: DockerfileStreamlit
+    tty: true
+    volumes:
+      - ./src/data:/app/src/data  # mount the audio output
+    ports:
+      - "8501:8501" 
+    environment:
+      - HOST=api-server
