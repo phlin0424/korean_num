@@ -1,6 +1,11 @@
 from fastapi import APIRouter, HTTPException
-from schemas import CreateAudioSchema, CreateNumResponseSchema, KoreanNumResponseSchema
-from utils import create_audio, generate_number, number_to_korean
+from schemas import (
+    CreateAudioSchema,
+    CreateNumResponseSchema,
+    KoreanNumResponseSchema,
+    CreateDateResponseSchema,
+)
+from utils import create_audio, generate_number, number_to_korean, generate_date
 
 routers = APIRouter()
 
@@ -30,3 +35,8 @@ def display_knum(input_number: int):
         )
     number_display = number_to_korean(input_number)
     return {"display_knum": number_display}
+
+
+@routers.get("/get_date", response_model=CreateDateResponseSchema)
+def get_date():
+    return {"date": generate_date()}
