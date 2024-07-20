@@ -5,20 +5,26 @@ st.title("한국숫자 연습")
 
 
 # Function to generate a random number based on a specified digit
-def get_number(digit):
-    response = db.get("get_number/", params={"digit": digit})
+def get_number(digit: int):
+    response = db.get("get_number", params={"digit": digit})
     return response["current_number"]
 
 
 # Function to generate the Korean number for display
-def get_display_knum(number):
-    response = db.get("display_knum/", params={"input_number": number})
+def get_display_knum(number: int):
+    response = db.get("display_knum", params={"input_number": number})
     return response["display_knum"]
 
 
+# Function to fetch a random date
+def get_date(number: int):
+    response = db.post("get_date")
+    return response["date"]
+
+
 # Function to generate audio
-def get_audio_path(number):
-    response = db.post("play_audios", json={"input_number": number})
+def get_audio_path(number: int):
+    response = db.post("play_audios", json={"input_number": str(number)})
     return response.strip('"')
 
 

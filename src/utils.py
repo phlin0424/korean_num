@@ -2,6 +2,7 @@ import random
 
 from navertts import NaverTTS
 from schemas import CreateAudioSchema
+from datetime import datetime, timedelta
 
 
 def create_audio(create_audio_params: CreateAudioSchema) -> str:
@@ -21,7 +22,7 @@ def create_audio(create_audio_params: CreateAudioSchema) -> str:
     audio_filename = create_audio_params.output_path / "temp.mp3"
 
     # Generate the audio file (.mp3):
-    text = str(create_audio_params.input_number)
+    text = create_audio_params.input_text
     tts = NaverTTS(text)
     tts.save(audio_filename)
     return str(audio_filename)
@@ -58,8 +59,21 @@ def number_to_korean(number):
     return result
 
 
+def generate_date() -> tuple[int, int]:
+    start_date = datetime.strptime("2020-01-01", "%Y-%m-%d")
+    end_date = datetime.strptime("2021-01-01", "%Y-%m-%d")
+    time_between_dates = end_date - start_date
+    days_between_dates = time_between_dates.days
+    random_number_of_days = random.randrange(days_between_dates)
+    random_date = start_date + timedelta(days=random_number_of_days)
+    month = random_date.month
+    day = random_date.day
+    return f"{month}월{day}일"
+
+
 if __name__ == "__main__":
     # create_audio(text="21")
     # print(generate_number())
-    print(number_to_korean(800))
-    print(number_to_korean(8000))
+    # print(number_to_korean(800))
+    # print(number_to_korean(8000))
+    print(generate_date())
