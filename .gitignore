@@ -6,3 +6,4 @@ src/data
 *localtest*
 tests/*.mp3
 .pytest*
+poetry.toml
