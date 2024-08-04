@@ -24,6 +24,9 @@ def get_date() -> str:
 
 # Function to generate audio
 def get_audio_path(input_text: str) -> str:
+    if isinstance(input_text, int):
+        input_text = str(input_text) + "원입니다"
+
     response = db.post("play_audios", json={"input_text": input_text})
     return response.strip('"')
 
@@ -36,7 +39,7 @@ db = Client()
 # The page for korean number:
 def number_page():
     # Create a text input box
-    digit = st.number_input("자리", min_value=1, max_value=5, value=4)
+    digit = st.number_input("자리", min_value=4, max_value=6, value=4)
 
     if "action1" not in st.session_state:
         st.session_state.action1 = False

@@ -31,7 +31,7 @@ def test_play_audios(current_path):
     """TESTCASE2: test endpoint /play_audios"""
     response = client.post(
         "/play_audios",
-        json={"input_number": 1234, "output_path": current_path.__str__()},
+        json={"input_text": "1234", "output_path": current_path.__str__()},
     )
     filename = response.text.strip('"')
     assert os.path.isfile(filename)
