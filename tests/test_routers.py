@@ -17,12 +17,14 @@ def current_path() -> Path:
 
 def test_get_number():
     """TESTCASE1: test endpoint /get_number"""
-    digit = 4  # or any other value you want to test
+    digit = 5  # digit =5 -> a number between 10000~99999
     response = client.get(
         "/get_number",
         params={"digit": digit},
     )
     assert response.status_code == 200
+    assert response.json()["current_number"] < 10**5
+    assert response.json()["current_number"] >= 10**4
 
 
 def test_play_audios(current_path):
