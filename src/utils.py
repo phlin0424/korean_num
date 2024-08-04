@@ -29,7 +29,12 @@ def create_audio(create_audio_params: CreateAudioSchema) -> str:
 
 
 def generate_number(digit: int) -> int:
-    current_number = random.randint(10 ** (digit - 1), 10**digit - 1)
+    # current_number = random.randint(10 ** (digit - 1), 10**digit - 1)
+    padding = 3
+    current_number = random.randint(
+        10 ** (digit - 1 - padding), 10 ** (digit - padding) - 1
+    )
+    current_number = current_number * 10**3
     return current_number
 
 
@@ -68,7 +73,7 @@ def generate_date() -> tuple[int, int]:
     random_date = start_date + timedelta(days=random_number_of_days)
     month = random_date.month
     day = random_date.day
-    return f"{month}월{day}일"
+    return f"{month}월{day}일입니다"
 
 
 if __name__ == "__main__":
