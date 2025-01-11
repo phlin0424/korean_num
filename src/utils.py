@@ -64,7 +64,7 @@ def number_to_korean(number):
     return result
 
 
-def generate_date() -> tuple[int, int]:
+def generate_date() -> str:
     start_date = datetime.strptime("2020-01-01", "%Y-%m-%d")
     end_date = datetime.strptime("2021-01-01", "%Y-%m-%d")
     time_between_dates = end_date - start_date
@@ -76,9 +76,15 @@ def generate_date() -> tuple[int, int]:
     return f"{month}월{day}일입니다"
 
 
+def generate_ppl_num() -> str:
+    num_str = str(random.randint(10, 99))
+    return f"{num_str}명"
+
+
 if __name__ == "__main__":
     # create_audio(text="21")
     # print(generate_number())
     # print(number_to_korean(800))
     # print(number_to_korean(8000))
-    print(generate_date())
+    # print(generate_date())
+    print(generate_ppl_num())

@@ -4,8 +4,15 @@ from schemas import (
     CreateNumResponseSchema,
     KoreanNumResponseSchema,
     CreateDateResponseSchema,
+    CreatePplNumResponseSchema,
 )
-from utils import create_audio, generate_number, number_to_korean, generate_date
+from utils import (
+    create_audio,
+    generate_number,
+    number_to_korean,
+    generate_date,
+    generate_ppl_num,
+)
 
 routers = APIRouter()
 
@@ -40,3 +47,8 @@ def display_knum(input_number: int):
 @routers.get("/get_date", response_model=CreateDateResponseSchema)
 def get_date():
     return {"date": generate_date()}
+
+
+@routers.get("/get_ppl_num", response_model=CreatePplNumResponseSchema)
+def get_ppl_num():
+    return {"ppl_num": generate_ppl_num()}

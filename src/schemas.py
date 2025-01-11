@@ -19,3 +19,7 @@ class KoreanNumResponseSchema(BaseModel):
 
 class CreateDateResponseSchema(BaseModel):
     date: str
+
+
+class CreatePplNumResponseSchema(BaseModel):
+    ppl_num: str
