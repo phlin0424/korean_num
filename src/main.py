@@ -3,6 +3,9 @@ from client import Client
 
 st.title("한국숫자 연습")
 
+# Initialize the client
+db = Client()
+
 
 # Function to generate a random number based on a specified digit
 def get_number(digit: int) -> str:
@@ -22,6 +25,12 @@ def get_date() -> str:
     return response["date"]
 
 
+# Function to fetch a random people number in string
+def get_ppl_num() -> str:
+    response = db.get("get_ppl_num")
+    return response["ppl_num"]
+
+
 # Function to generate audio
 def get_audio_path(input_text: str) -> str:
     if isinstance(input_text, int):
@@ -29,10 +38,6 @@ def get_audio_path(input_text: str) -> str:
 
     response = db.post("play_audios", json={"input_text": input_text})
     return response.strip('"')
-
-
-# Initialize the client
-db = Client()
 
 
 # Page functions:
@@ -90,8 +95,30 @@ def date_page():
         st.audio(st.session_state.audio_path)
 
 
+# The page for korean ppl number:
+def ppl_number_page():
+    if "action3" not in st.session_state:
+        st.session_state.action3 = False
+
+    # Display button for generating number, Korean word, and audio
+    if st.button("TRY IT"):
+        st.session_state.action3 = True
+        # Generate a people amount e.g., 24명
+        st.session_state.ppl_num = get_ppl_num()
+
+        # Generate the audio (.mp3 file)
+        st.session_state.audio_path = get_audio_path(st.session_state.ppl_num)
+
+    if st.session_state.action3:
+        # Display the generated people amount on UI (e.g., 24명)
+        st.title(f"{st.session_state.ppl_num}")
+
+        # Allow the user to play the audio
+        st.audio(st.session_state.audio_path)
+
+
 # Page dictionary
-pages = {"Number": number_page, "Date": date_page}
+pages = {"Number": number_page, "Date": date_page, "People amount": ppl_number_page}
 
 # Sidebar with a drop-down list for navigation
 st.sidebar.title("Navigation")
