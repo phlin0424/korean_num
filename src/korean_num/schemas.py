@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from config import conf
+from korean_num.config import conf
 from pydantic import BaseModel
 
 

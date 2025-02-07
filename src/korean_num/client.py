@@ -1,5 +1,5 @@
 import requests
-from config import conf
+from korean_num.config import conf
 from requests import Response
 
 

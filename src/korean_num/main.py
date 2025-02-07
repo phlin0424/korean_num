@@ -1,5 +1,5 @@
 import streamlit as st
-from client import Client
+from korean_num.client import Client
 
 st.title("한국숫자 연습")
 

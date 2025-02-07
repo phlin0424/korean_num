@@ -1,7 +1,7 @@
 import random
 
 from navertts import NaverTTS
-from schemas import CreateAudioSchema
+from korean_num.schemas import CreateAudioSchema
 from datetime import datetime, timedelta
 
 

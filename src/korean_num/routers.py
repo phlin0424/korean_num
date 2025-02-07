@@ -1,11 +1,16 @@
 from fastapi import APIRouter, HTTPException
-from schemas import (
+from korean_num.schemas import (
     CreateAudioSchema,
     CreateNumResponseSchema,
     KoreanNumResponseSchema,
     CreateDateResponseSchema,
 )
-from utils import create_audio, generate_number, number_to_korean, generate_date
+from korean_num.utils import (
+    create_audio,
+    generate_number,
+    number_to_korean,
+    generate_date,
+)
 
 routers = APIRouter()
 
