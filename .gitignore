@@ -1,6 +1,6 @@
 .venv
 .vscode
-src/data
+korean/data
 *__pycache__*
 .ruff_cache
 *localtest*

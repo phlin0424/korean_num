@@ -1,7 +1,7 @@
+import os
 from pathlib import Path
 
 from pydantic_settings import BaseSettings
-import os
 
 DIR_PATH = Path(__file__).resolve().parent.parent
 HOST = os.getenv("HOST", "localhost")

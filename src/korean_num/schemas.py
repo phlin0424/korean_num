@@ -1,7 +1,8 @@
 from pathlib import Path
 
-from korean_num.config import conf
 from pydantic import BaseModel
+
+from korean_num.config import conf
 
 
 class CreateNumResponseSchema(BaseModel):

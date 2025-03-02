@@ -1,13 +1,13 @@
 import random
+from datetime import datetime, timedelta
 
 from navertts import NaverTTS
+
 from korean_num.schemas import CreateAudioSchema
-from datetime import datetime, timedelta
 
 
 def create_audio(create_audio_params: CreateAudioSchema) -> str:
     """Create an audio file (.mp3) for the input korean word. Based on Naver TTS API."""
-
     # Create the directory if not exist:
     if not create_audio_params.output_path.exists():
         create_audio_params.output_path.mkdir(parents=True, exist_ok=True)

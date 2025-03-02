@@ -4,7 +4,7 @@ from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
 
-from src.app import app
+from korean_num.app import app
 
 # Create a test client
 client = TestClient(app)
@@ -28,7 +28,7 @@ def test_get_number():
 
 
 def test_play_audios(current_path):
-    """TESTCASE2: test endpoint /play_audios"""
+    """TESTCASE2: test endpoint /play_audios."""
     response = client.post(
         "/play_audios",
         json={"input_text": "1234", "output_path": current_path.__str__()},
@@ -39,9 +39,8 @@ def test_play_audios(current_path):
     assert response.status_code == 200
 
 
-def test_display_knum():
-    """TESTCASE 3: test endpoint /display_knum"""
-
+def test_display_knum() -> None:
+    """TESTCASE 3: test endpoint /display_knum."""
     response = client.get(
         "/display_knum",
         params={"input_number": 1234},
@@ -50,14 +49,11 @@ def test_display_knum():
     assert response.json()["display_knum"] == "천이백삼십사"
 
 
-def test_display_knum_digiterror():
-    """TESTCASE 4: test endpoint /display_knum with a number greater than 10**6"""
-
+def test_display_knum_digiterror() -> None:
+    """TESTCASE 4: test endpoint /display_knum with a number greater than 10**6."""
     response = client.get(
         "/display_knum",
         params={"input_number": 999999},
     )
     assert response.status_code == 403
-    assert (
-        response.json()["detail"] == "not available number (must be smaller than 100k)"
-    )
+    assert response.json()["detail"] == "not available number (must be smaller than 100k)"

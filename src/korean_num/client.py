@@ -1,6 +1,7 @@
 import requests
-from korean_num.config import conf
 from requests import Response
+
+from korean_num.config import conf
 
 
 # a client to request apis
@@ -23,8 +24,7 @@ class Client:
             raise Exception(
                 f"Wrong path {path}, use with api path directly (no http://xxx..xxx)."
             )
-        if path.startswith("/"):
-            path = path[1:]
+        path = path.removeprefix("/")
         return path
 
     def _get_json_result(self, url: str, r: Response, print_auth_error=True):

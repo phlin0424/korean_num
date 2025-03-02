@@ -1,4 +1,4 @@
-from src.utils import number_to_korean, generate_number
+from korean_num.utils import generate_number, number_to_korean
 
 
 def test_number_to_korean():
