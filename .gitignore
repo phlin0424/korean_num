@@ -7,3 +7,4 @@ src/data
 tests/*.mp3
 .pytest*
 poetry.toml
+*/.env
